@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // { watch: [...], tokens: [...], name, bungieLinked: bool, bungieStatus }  (uid = Bungie membership id)
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    // The user's own Bungie refresh token: they can store/replace/delete it but never read it back.
+    match /bungie/{uid} {
+      allow create, update, delete: if request.auth != null && request.auth.uid == uid;
+    }
+    // That user's vendor stock, written only by the sync (admin SDK bypasses rules).
+    match /stock/{uid} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+    }
+    // Everything else (notified/*) is server-only.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
