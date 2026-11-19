@@ -202225,10 +202225,10 @@
    "ammo": 0,
    "dmg": 0,
    "group": "misc",
-   "hash": "4040456076",
+   "hash": "1616736576",
    "icon": "",
    "klass": 3,
-   "name": "Vanguard Tactician Armor",
+   "name": "Vanguard Tactician Arsenal",
    "slot": "",
    "tier": "Legendary",
    "type": "Armor Set",
@@ -202240,10 +202240,10 @@
    "ammo": 0,
    "dmg": 0,
    "group": "misc",
-   "hash": "1616736576",
+   "hash": "4040456076",
    "icon": "",
    "klass": 3,
-   "name": "Vanguard Tactician Arsenal",
+   "name": "Vanguard Tactician Armor",
    "slot": "",
    "tier": "Legendary",
    "type": "Armor Set",
@@ -202252,5 +202252,5 @@
    ]
   }
  ],
- "updated": 1795098580
+ "updated": 1795102138
 }
