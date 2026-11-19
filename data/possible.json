@@ -202220,7 +202220,37 @@
    "vendors": [
     "The Past"
    ]
+  },
+  {
+   "ammo": 0,
+   "dmg": 0,
+   "group": "misc",
+   "hash": "4040456076",
+   "icon": "",
+   "klass": 3,
+   "name": "Vanguard Tactician Armor",
+   "slot": "",
+   "tier": "Legendary",
+   "type": "Armor Set",
+   "vendors": [
+    "Commander Zavala"
+   ]
+  },
+  {
+   "ammo": 0,
+   "dmg": 0,
+   "group": "misc",
+   "hash": "1616736576",
+   "icon": "",
+   "klass": 3,
+   "name": "Vanguard Tactician Arsenal",
+   "slot": "",
+   "tier": "Legendary",
+   "type": "Armor Set",
+   "vendors": [
+    "Commander Zavala"
+   ]
   }
  ],
- "updated": 1795093521
+ "updated": 1795098580
 }
