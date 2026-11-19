@@ -1,0 +1,32 @@
+name: sync-vendors
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # GitHub may delay scheduled runs by several minutes
+  workflow_dispatch:
+concurrency: sync
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/cache@v4          # manifest cache so the big download only happens when Bungie updates it
+        with:
+          path: .cache
+          key: manifest-${{ github.run_id }}
+          restore-keys: manifest-
+      - run: pip install requests firebase-admin
+      - run: python scripts/sync.py
+        env:
+          BUNGIE_API_KEY: ${{ secrets.BUNGIE_API_KEY }}
+          BUNGIE_CLIENT_ID: ${{ secrets.BUNGIE_CLIENT_ID }}
+          BUNGIE_CLIENT_SECRET: ${{ secrets.BUNGIE_CLIENT_SECRET }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Commit data
+        run: |
+          git config user.name "d2-sync"; git config user.email "d2-sync@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || (git commit -m "sync $(date -u +%FT%TZ)" && git pull --rebase && git push)
